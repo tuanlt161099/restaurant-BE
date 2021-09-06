@@ -2,10 +2,23 @@ import ENV from './config/env';
 import http from 'http';
 import app from './middleware';
 import debug from 'debug';
+import ORM from './database/database.auth';
+import { initData } from './init.data';
 
 const server = http.createServer(app);
 const logger = debug(ENV.DEBUG);
 
+/** Connect to database */
+ORM.authenticate()
+  .then(() => {
+    logger(`Connect to database: ${ENV.DB_CONNECTION}`);
+    ORM.sync({ alter: false, force: false })
+      .then(() => initData())
+      .catch((err) => console.error(`Unable to sync the database: ${err.toString()}`));
+  })
+  .catch((err) => `Unable to sync the database: ${err.toString()}`);
+
+/** Start Server */
 app.set('port', ENV.PORT);
 server.listen(ENV.PORT);
 server.on('error', onError);

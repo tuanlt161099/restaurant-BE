@@ -9,7 +9,7 @@ const ENV = {
   DEBUG: process.env.DEBUG || '',
 
   /** Databases */
-  DB_CONNECTION: process.env.DB_CONNECTION,
+  DB_CONNECTION: process.env.DB_CONNECTION || '',
 
   /** Cookie */
   COOKIE_SECRET: process.env.COOKIE_SECRET || '',
