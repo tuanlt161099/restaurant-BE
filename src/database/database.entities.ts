@@ -20,12 +20,13 @@ export interface User extends sequelize.Model {
   phone?: string;
   avatar?: string;
   loginDateTime?: Date | string;
-  authToken?: number;
+  authToken?: string;
   isActive: boolean;
   createUserId?: number;
   createDateTime: Date | string;
   editUserId?: number;
   editDateTime: Date | string;
+  email: string;
   /** relationship */
   userType?: UserType;
 }
