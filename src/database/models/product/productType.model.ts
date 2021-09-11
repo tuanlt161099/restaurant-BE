@@ -1,9 +1,9 @@
 import sequelize from 'sequelize';
-import ORM from '../database.auth';
-import { UserType } from '../database.entities';
+import ORM from '../../database.auth';
+import { ProductType } from '../../database.entities';
 
-const UserTypeModel = ORM.define<UserType>(
-  'user_type',
+const ProductTypeModel = ORM.define<ProductType>(
+  'product_type',
   {
     id: {
       type: sequelize.DataTypes.INTEGER,
@@ -17,11 +17,10 @@ const UserTypeModel = ORM.define<UserType>(
     },
   },
   {
-    //auto create table name 'user_type'
     freezeTableName: true,
     createdAt: 'createDateTime',
     updatedAt: 'editDateTime',
   },
 );
 
-export default UserTypeModel;
+export default ProductTypeModel;
